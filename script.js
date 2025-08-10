@@ -18,7 +18,7 @@ window.addEventListener('load', () => {
             // Initialize animations after loading
             initializeAnimations();
         }, 500);
-    }, 1500);
+    }, 1200); // Reduced loading time
 });
 
 // Initialize all animations and effects
@@ -29,14 +29,14 @@ function initializeAnimations() {
     // Initialize scroll animations
     initScrollAnimations();
     
-    // Initialize tilt effects
+    // Initialize tilt effects (reduced intensity)
     initTiltEffects();
     
     // Start typing animation
     startTypingAnimation();
     
-    // Initialize particle system
-    initParticleSystem();
+    // Initialize reduced particle system
+    initReducedParticleSystem();
 }
 
 // Smooth scrolling for navigation
@@ -50,6 +50,26 @@ function scrollToSection(sectionId) {
             behavior: 'smooth'
         });
     }
+}
+
+// Video toggle function for projects
+function toggleVideo(projectId) {
+    const video = document.getElementById(projectId + 'Video');
+    const placeholder = document.getElementById(projectId + 'Placeholder');
+    
+    // Check if video file exists
+    video.addEventListener('loadeddata', () => {
+        placeholder.style.display = 'none';
+        video.style.display = 'block';
+        video.play();
+    });
+    
+    video.addEventListener('error', () => {
+        showNotification(`Video not found: videos/${projectId}-demo.mp4`, 'info');
+    });
+    
+    // Try to load the video
+    video.load();
 }
 
 // Navigation functionality
@@ -89,12 +109,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Scroll event handlers
+// Debounced scroll event handler
+let scrollTimeout;
 window.addEventListener('scroll', () => {
-    handleNavbarVisibility();
-    handleActiveNavLink();
-    handleBackToTopButton();
-    handleScrollAnimations();
+    if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+    }
+    scrollTimeout = setTimeout(() => {
+        handleNavbarVisibility();
+        handleActiveNavLink();
+        handleBackToTopButton();
+        handleScrollAnimations();
+    }, 10);
 });
 
 // Show/hide navbar on scroll
@@ -179,24 +205,17 @@ function initScrollAnimations() {
     });
 }
 
-// Handle continuous scroll animations
+// Handle continuous scroll animations (reduced intensity)
 function handleScrollAnimations() {
     const scrollTop = window.pageYOffset;
     
-    // Parallax effect for floating shapes
+    // Reduced parallax effect for floating shapes
     const shapes = document.querySelectorAll('.shape');
     shapes.forEach((shape, index) => {
-        const speed = 0.5 + (index * 0.1);
+        const speed = 0.3 + (index * 0.05); // Reduced speed
         const yPos = -(scrollTop * speed);
         shape.style.transform = `translateY(${yPos}px)`;
     });
-
-    // Parallax effect for header background
-    const header = document.getElementById('header');
-    if (header) {
-        const yPos = scrollTop * 0.3;
-        header.style.backgroundPositionY = `${yPos}px`;
-    }
 }
 
 // Animate skill bars
@@ -205,7 +224,7 @@ function animateSkillBars() {
         setTimeout(() => {
             const width = bar.getAttribute('data-width');
             bar.style.width = width;
-        }, index * 200);
+        }, index * 150); // Slightly faster stagger
     });
 }
 
@@ -214,7 +233,7 @@ function animateStatNumbers() {
     statNumbers.forEach(stat => {
         const target = parseInt(stat.getAttribute('data-target'));
         let current = 0;
-        const increment = target / 50;
+        const increment = target / 40; // Faster animation
         const timer = setInterval(() => {
             current += increment;
             if (current >= target) {
@@ -223,7 +242,7 @@ function animateStatNumbers() {
             } else {
                 stat.textContent = Math.floor(current);
             }
-        }, 50);
+        }, 60); // Faster intervals
     });
 }
 
@@ -241,7 +260,7 @@ function startTypingAnimation() {
         if (index < text.length) {
             typingElement.textContent += text.charAt(index);
             index++;
-            setTimeout(typeChar, 100);
+            setTimeout(typeChar, 120); // Slightly slower typing
         } else {
             // Start cursor blinking
             setTimeout(() => {
@@ -254,7 +273,7 @@ function startTypingAnimation() {
     typeChar();
 }
 
-// Initialize tilt effects for cards
+// Initialize tilt effects with reduced intensity
 function initTiltEffects() {
     const tiltElements = document.querySelectorAll('[data-tilt]');
     
@@ -273,10 +292,11 @@ function handleTilt(e) {
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
     
-    const rotateX = (y - centerY) / 10;
-    const rotateY = (centerX - x) / 10;
+    // Reduced tilt intensity
+    const rotateX = (y - centerY) / 15; // Increased divisor for less tilt
+    const rotateY = (centerX - x) / 15;
     
-    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(5px)`;
 }
 
 function resetTilt(e) {
@@ -294,16 +314,16 @@ function animateOnLoad() {
     // Animate CTA button
     setTimeout(() => {
         document.querySelector('.cta-button')?.classList.add('fade-in');
-    }, 800);
+    }, 600);
     
     // Animate scroll indicator
     setTimeout(() => {
         document.querySelector('.scroll-indicator')?.classList.add('fade-in');
-    }, 1200);
+    }, 1000);
 }
 
-// Particle system for enhanced visual effects
-function initParticleSystem() {
+// Reduced particle system for enhanced visual effects
+function initReducedParticleSystem() {
     const canvas = document.createElement('canvas');
     canvas.style.position = 'fixed';
     canvas.style.top = '0';
@@ -312,7 +332,7 @@ function initParticleSystem() {
     canvas.style.height = '100%';
     canvas.style.pointerEvents = 'none';
     canvas.style.zIndex = '-1';
-    canvas.style.opacity = '0.3';
+    canvas.style.opacity = '0.15'; // Reduced opacity
     
     document.body.appendChild(canvas);
     
@@ -328,15 +348,15 @@ function initParticleSystem() {
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
     
-    // Particle class
+    // Particle class with reduced intensity
     class Particle {
         constructor() {
             this.x = Math.random() * canvas.width;
             this.y = Math.random() * canvas.height;
-            this.size = Math.random() * 2 + 0.5;
-            this.speedX = Math.random() * 2 - 1;
-            this.speedY = Math.random() * 2 - 1;
-            this.opacity = Math.random() * 0.3 + 0.1;
+            this.size = Math.random() * 1.5 + 0.3; // Smaller particles
+            this.speedX = Math.random() * 1 - 0.5; // Slower movement
+            this.speedY = Math.random() * 1 - 0.5;
+            this.opacity = Math.random() * 0.2 + 0.05; // Lower opacity
         }
         
         update() {
@@ -357,10 +377,10 @@ function initParticleSystem() {
         }
     }
     
-    // Initialize particles
+    // Initialize fewer particles
     function initParticles() {
         particles = [];
-        const numberOfParticles = Math.floor((canvas.width * canvas.height) / 15000);
+        const numberOfParticles = Math.floor((canvas.width * canvas.height) / 25000); // Fewer particles
         
         for (let i = 0; i < numberOfParticles; i++) {
             particles.push(new Particle());
@@ -383,69 +403,48 @@ function initParticleSystem() {
     animateParticles();
 }
 
-// Mouse trail effect
-function initMouseTrail() {
+// Reduced mouse trail effect (desktop only)
+function initReducedMouseTrail() {
     const trail = [];
-    const maxTrailLength = 20;
+    const maxTrailLength = 12; // Reduced trail length
     
     document.addEventListener('mousemove', (e) => {
-        trail.push({
-            x: e.clientX,
-            y: e.clientY,
-            timestamp: Date.now()
-        });
-        
-        // Remove old trail points
-        while (trail.length > maxTrailLength) {
-            trail.shift();
-        }
-        
-        // Create trail element
-        const trailElement = document.createElement('div');
-        trailElement.className = 'mouse-trail';
-        trailElement.style.cssText = `
-            position: fixed;
-            width: 6px;
-            height: 6px;
-            background: linear-gradient(45deg, #3498db, #9b59b6);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            left: ${e.clientX - 3}px;
-            top: ${e.clientY - 3}px;
-            opacity: 0.8;
-            transition: opacity 0.5s ease;
-        `;
-        
-        document.body.appendChild(trailElement);
-        
-        // Fade out and remove
-        setTimeout(() => {
-            trailElement.style.opacity = '0';
+        // Only create trail occasionally
+        if (Math.random() > 0.7) { // Reduced frequency
+            const trailElement = document.createElement('div');
+            trailElement.className = 'mouse-trail';
+            trailElement.style.cssText = `
+                position: fixed;
+                width: 4px;
+                height: 4px;
+                background: linear-gradient(45deg, #3498db, #9b59b6);
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 9999;
+                left: ${e.clientX - 2}px;
+                top: ${e.clientY - 2}px;
+                opacity: 0.4;
+                transition: opacity 0.8s ease;
+            `;
+            
+            document.body.appendChild(trailElement);
+            
+            // Fade out and remove
             setTimeout(() => {
-                if (trailElement.parentNode) {
-                    trailElement.parentNode.removeChild(trailElement);
-                }
-            }, 500);
-        }, 100);
+                trailElement.style.opacity = '0';
+                setTimeout(() => {
+                    if (trailElement.parentNode) {
+                        trailElement.parentNode.removeChild(trailElement);
+                    }
+                }, 800);
+            }, 150);
+        }
     });
 }
 
-// Initialize mouse trail on desktop only
+// Initialize reduced mouse trail on desktop only
 if (window.innerWidth > 768) {
-    initMouseTrail();
-}
-
-// Contact form functionality (if needed)
-function initContactForm() {
-    const contactForm = document.querySelector('.contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            // Add form submission logic here
-            showNotification('Message sent successfully!', 'success');
-        });
-    }
+    initReducedMouseTrail();
 }
 
 // Notification system
@@ -463,7 +462,9 @@ function showNotification(message, type = 'info') {
         z-index: 10000;
         transform: translateX(400px);
         transition: transform 0.3s ease;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        font-size: 0.9rem;
+        font-weight: 500;
     `;
     notification.textContent = message;
     
@@ -548,166 +549,7 @@ function initLazyLoading() {
     images.forEach(img => imageObserver.observe(img));
 }
 
-// Initialize all features when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    initLazyLoading();
-    initContactForm();
-    
-    // Add smooth reveal animation to elements
-    const revealElements = document.querySelectorAll('.project-card, .skill-category, .edu-exp-card');
-    revealElements.forEach((el, index) => {
-        el.style.animationDelay = `${index * 0.1}s`;
-    });
-});
-
-// Performance optimization: Debounce scroll events
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-// Apply debouncing to scroll handler
-window.addEventListener('scroll', debounce(() => {
-    handleNavbarVisibility();
-    handleActiveNavLink();
-    handleBackToTopButton();
-    handleScrollAnimations();
-}, 10));
-
-// Add CSS for no-scroll class
-const style = document.createElement('style');
-style.textContent = `
-    .no-scroll {
-        overflow: hidden;
-    }
-    
-    .mouse-trail {
-        animation: trailFade 0.5s ease-out;
-    }
-    
-    @keyframes trailFade {
-        0% { transform: scale(0); opacity: 1; }
-        100% { transform: scale(1); opacity: 0; }
-    }
-    
-    .fade-in {
-        animation: fadeInUp 0.8s ease forwards;
-    }
-    
-    .slide-in-left {
-        animation: slideInLeft 0.8s ease forwards;
-    }
-    
-    .slide-in-right {
-        animation: slideInRight 0.8s ease forwards;
-    }
-    
-    .notification {
-        font-weight: 500;
-        border-left: 4px solid rgba(255,255,255,0.5);
-    }
-`;
-
-document.head.appendChild(style);
-
-// Project demo functionality
-function initProjectDemos() {
-    const demoButtons = document.querySelectorAll('.demo-btn');
-    const projectOverlays = document.querySelectorAll('.project-overlay');
-    
-    demoButtons.forEach((btn, index) => {
-        btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            showNotification('Demo video placeholder - Upload your demo video here!', 'info');
-        });
-    });
-    
-    // Video placeholder click handlers
-    const videoPlaceholders = document.querySelectorAll('.video-placeholder');
-    videoPlaceholders.forEach((placeholder, index) => {
-        placeholder.addEventListener('click', () => {
-            showNotification('Click here to upload your demo video!', 'info');
-            // You can add file upload functionality here
-            // Example: triggerFileUpload(index);
-        });
-        
-        // Add hover effect
-        placeholder.addEventListener('mouseenter', () => {
-            placeholder.style.transform = 'scale(1.02)';
-        });
-        
-        placeholder.addEventListener('mouseleave', () => {
-            placeholder.style.transform = 'scale(1)';
-        });
-    });
-}
-
-// Profile image upload functionality
-function initProfileImageUpload() {
-    const profilePlaceholder = document.querySelector('.profile-image-placeholder');
-    
-    if (profilePlaceholder) {
-        profilePlaceholder.addEventListener('click', () => {
-            showNotification('Click here to upload your profile photo!', 'info');
-            // You can add file upload functionality here
-            // Example: triggerProfileUpload();
-        });
-        
-        // Add hover effect
-        profilePlaceholder.addEventListener('mouseenter', () => {
-            profilePlaceholder.style.transform = 'scale(1.05)';
-        });
-        
-        profilePlaceholder.addEventListener('mouseleave', () => {
-            profilePlaceholder.style.transform = 'scale(1)';
-        });
-    }
-}
-
-// Example file upload trigger functions (you can implement these)
-function triggerFileUpload(projectIndex) {
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.accept = 'video/*';
-    input.onchange = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            // Handle video upload
-            console.log(`Uploading video for project ${projectIndex}:`, file.name);
-            showNotification(`Video "${file.name}" selected for project ${projectIndex + 1}!`, 'success');
-        }
-    };
-    input.click();
-}
-
-function triggerProfileUpload() {
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.accept = 'image/*';
-    input.onchange = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            // Handle profile image upload
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                const profilePlaceholder = document.querySelector('.profile-image-placeholder');
-                profilePlaceholder.innerHTML = `<img src="${e.target.result}" alt="Profile" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">`;
-            };
-            reader.readAsDataURL(file);
-            showNotification(`Profile image "${file.name}" uploaded successfully!`, 'success');
-        }
-    };
-    input.click();
-}
-
-// Enhanced scroll animations with stagger effect
+// Enhanced scroll animations with reduced stagger effect
 function initStaggeredAnimations() {
     const animateElements = (elements, delay = 100) => {
         elements.forEach((el, index) => {
@@ -727,13 +569,13 @@ function initStaggeredAnimations() {
             if (entry.isIntersecting) {
                 if (entry.target.classList.contains('projects-grid')) {
                     const projectCards = entry.target.querySelectorAll('.project-card');
-                    animateElements(projectCards, 200);
+                    animateElements(projectCards, 150); // Reduced delay
                 } else if (entry.target.classList.contains('skills-container')) {
                     const skillCategories = entry.target.querySelectorAll('.skill-category');
-                    animateElements(skillCategories, 150);
+                    animateElements(skillCategories, 100); // Reduced delay
                 } else if (entry.target.classList.contains('education-experience')) {
                     const cards = entry.target.querySelectorAll('.edu-exp-card');
-                    animateElements(cards, 300);
+                    animateElements(cards, 200); // Reduced delay
                 }
                 staggerObserver.unobserve(entry.target);
             }
@@ -746,35 +588,37 @@ function initStaggeredAnimations() {
     });
 }
 
-// Tech stack hover effects
+// Tech stack hover effects (reduced intensity)
 function initTechStackEffects() {
     const techTags = document.querySelectorAll('.tech-tag');
     
     techTags.forEach(tag => {
         tag.addEventListener('mouseenter', () => {
-            // Create sparkle effect
-            createSparkles(tag);
+            // Create subtle sparkle effect
+            if (Math.random() > 0.5) { // Only sometimes
+                createSparkles(tag, 2); // Fewer sparkles
+            }
         });
     });
 }
 
-function createSparkles(element) {
-    const sparkles = 3;
+function createSparkles(element, count = 2) {
     const rect = element.getBoundingClientRect();
     
-    for (let i = 0; i < sparkles; i++) {
+    for (let i = 0; i < count; i++) {
         const sparkle = document.createElement('div');
         sparkle.style.cssText = `
             position: fixed;
-            width: 4px;
-            height: 4px;
+            width: 3px;
+            height: 3px;
             background: #3498db;
             border-radius: 50%;
             pointer-events: none;
             z-index: 1000;
             left: ${rect.left + Math.random() * rect.width}px;
             top: ${rect.top + Math.random() * rect.height}px;
-            animation: sparkleFloat 1s ease-out forwards;
+            animation: sparkleFloat 1.5s ease-out forwards;
+            opacity: 0.6;
         `;
         
         document.body.appendChild(sparkle);
@@ -783,173 +627,11 @@ function createSparkles(element) {
             if (sparkle.parentNode) {
                 sparkle.parentNode.removeChild(sparkle);
             }
-        }, 1000);
+        }, 1500);
     }
 }
 
-// Add sparkle animation to CSS
-const sparkleStyle = document.createElement('style');
-sparkleStyle.textContent += `
-    @keyframes sparkleFloat {
-        0% {
-            transform: translateY(0) scale(0);
-            opacity: 1;
-        }
-        100% {
-            transform: translateY(-30px) scale(1);
-            opacity: 0;
-        }
-    }
-`;
-document.head.appendChild(sparkleStyle);
-
-// Dark/Light theme toggle (optional feature)
-function initThemeToggle() {
-    const themeToggle = document.createElement('button');
-    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-    themeToggle.className = 'theme-toggle';
-    themeToggle.style.cssText = `
-        position: fixed;
-        top: 50%;
-        right: 20px;
-        width: 50px;
-        height: 50px;
-        border: none;
-        border-radius: 50%;
-        background: linear-gradient(45deg, #3498db, #9b59b6);
-        color: white;
-        font-size: 1.2rem;
-        cursor: pointer;
-        z-index: 1001;
-        transition: all 0.3s ease;
-        transform: translateY(-50%);
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    `;
-    
-    document.body.appendChild(themeToggle);
-    
-    themeToggle.addEventListener('click', () => {
-        document.body.classList.toggle('light-theme');
-        const isLight = document.body.classList.contains('light-theme');
-        themeToggle.innerHTML = isLight ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-        
-        // Save preference
-        localStorage.setItem('theme', isLight ? 'light' : 'dark');
-    });
-    
-    // Load saved theme
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'light') {
-        document.body.classList.add('light-theme');
-        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-    }
-}
-
-// Initialize enhanced features
-document.addEventListener('DOMContentLoaded', () => {
-    initProjectDemos();
-    initProfileImageUpload();
-    initStaggeredAnimations();
-    initTechStackEffects();
-    initThemeToggle();
-});
-
-// Matrix rain effect (optional cool background effect)
-function initMatrixRain() {
-    const canvas = document.createElement('canvas');
-    canvas.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: -2;
-        opacity: 0.03;
-    `;
-    document.body.appendChild(canvas);
-    
-    const ctx = canvas.getContext('2d');
-    
-    function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
-    
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-    
-    const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}";
-    const matrixArray = matrix.split("");
-    
-    const fontSize = 10;
-    const columns = canvas.width / fontSize;
-    const drops = [];
-    
-    for (let x = 0; x < columns; x++) {
-        drops[x] = 1;
-    }
-    
-    function drawMatrix() {
-        ctx.fillStyle = 'rgba(10, 14, 22, 0.04)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        
-        ctx.fillStyle = '#3498db';
-        ctx.font = fontSize + 'px monospace';
-        
-        for (let i = 0; i < drops.length; i++) {
-            const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
-            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-            
-            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                drops[i] = 0;
-            }
-            drops[i]++;
-        }
-    }
-    
-    setInterval(drawMatrix, 100);
-}
-
-// Initialize matrix rain on desktop only
-if (window.innerWidth > 768) {
-    initMatrixRain();
-}
-
-// Performance monitoring
-function initPerformanceMonitoring() {
-    // Monitor FPS
-    let fps = 0;
-    let lastTime = performance.now();
-    let frameCount = 0;
-    
-    function calculateFPS() {
-        frameCount++;
-        const currentTime = performance.now();
-        
-        if (currentTime >= lastTime + 1000) {
-            fps = Math.round((frameCount * 1000) / (currentTime - lastTime));
-            frameCount = 0;
-            lastTime = currentTime;
-            
-            // Log performance issues
-            if (fps < 30) {
-                console.warn('Low FPS detected:', fps);
-            }
-        }
-        
-        requestAnimationFrame(calculateFPS);
-    }
-    
-    calculateFPS();
-}
-
-// Initialize performance monitoring in development
-if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-    initPerformanceMonitoring();
-}
-
-// Contact form validation and submission
+// Contact form functionality with ripple effects
 function initAdvancedContactForm() {
     const contactMethods = document.querySelectorAll('.contact-method');
     
@@ -972,7 +654,7 @@ function initAdvancedContactForm() {
             }
         });
         
-        // Add ripple effect on click
+        // Add reduced ripple effect on click
         method.addEventListener('click', createRippleEffect);
     });
 }
@@ -991,10 +673,10 @@ function createRippleEffect(e) {
         height: ${size}px;
         left: ${x}px;
         top: ${y}px;
-        background: rgba(255, 255, 255, 0.3);
+        background: rgba(255, 255, 255, 0.2);
         border-radius: 50%;
         transform: scale(0);
-        animation: ripple 0.6s linear;
+        animation: ripple 0.8s linear;
         pointer-events: none;
     `;
     
@@ -1004,25 +686,47 @@ function createRippleEffect(e) {
     
     setTimeout(() => {
         ripple.remove();
-    }, 600);
+    }, 800);
 }
 
-// Add ripple animation
-const rippleStyle = document.createElement('style');
-rippleStyle.textContent += `
-    @keyframes ripple {
-        to {
-            transform: scale(2);
-            opacity: 0;
-        }
+// Profile image error handling
+function initImageHandling() {
+    const profileImage = document.getElementById('profileImage');
+    const profilePlaceholder = document.getElementById('profilePlaceholder');
+    
+    if (profileImage) {
+        profileImage.addEventListener('error', () => {
+            profileImage.style.display = 'none';
+            profilePlaceholder.style.display = 'flex';
+        });
+        
+        profileImage.addEventListener('load', () => {
+            profilePlaceholder.style.display = 'none';
+            profileImage.style.display = 'block';
+        });
     }
-`;
-document.head.appendChild(rippleStyle);
-
-// Initialize advanced contact features
-document.addEventListener('DOMContentLoaded', () => {
-    initAdvancedContactForm();
-});
+    
+    // Handle project videos
+    document.querySelectorAll('.project-video').forEach((video, index) => {
+        video.addEventListener('error', () => {
+            const projectId = 'project' + (index + 1);
+            const placeholder = document.getElementById(projectId + 'Placeholder');
+            video.style.display = 'none';
+            if (placeholder) {
+                placeholder.style.display = 'flex';
+            }
+        });
+        
+        video.addEventListener('loadeddata', () => {
+            const projectId = 'project' + (index + 1);
+            const placeholder = document.getElementById(projectId + 'Placeholder');
+            if (placeholder) {
+                placeholder.style.display = 'none';
+            }
+            video.style.display = 'block';
+        });
+    });
+}
 
 // Accessibility improvements
 function initAccessibilityFeatures() {
@@ -1042,6 +746,7 @@ function initAccessibilityFeatures() {
         border-radius: 4px;
         z-index: 10000;
         transition: top 0.3s;
+        font-weight: 500;
     `;
     
     skipLink.addEventListener('focus', () => {
@@ -1054,17 +759,7 @@ function initAccessibilityFeatures() {
     
     document.body.insertBefore(skipLink, document.body.firstChild);
     
-    // Enhanced keyboard navigation
-    let focusedElementIndex = 0;
-    const focusableElements = document.querySelectorAll('a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])');
-    
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Tab') {
-            // Custom tab handling if needed
-        }
-    });
-    
-    // Announce page changes for screen readers
+    // Announce section changes for screen readers
     function announcePageChange(message) {
         const announcement = document.createElement('div');
         announcement.setAttribute('aria-live', 'polite');
@@ -1098,14 +793,108 @@ function initAccessibilityFeatures() {
     sections.forEach(section => sectionObserver.observe(section));
 }
 
-// Initialize accessibility features
-initAccessibilityFeatures();
+// Performance optimization: Throttle resize events
+function throttle(func, limit) {
+    let inThrottle;
+    return function() {
+        const args = arguments;
+        const context = this;
+        if (!inThrottle) {
+            func.apply(context, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
+    }
+}
 
-console.log('🚀 Haider Ali Portfolio - All systems loaded and ready!');
-console.log('💼 Features initialized:', {
-    animations: '✅',
-    interactions: '✅',
-    accessibility: '✅',
-    performance: '✅',
-    responsiveness: '✅'
+// Throttled resize handler
+window.addEventListener('resize', throttle(() => {
+    // Re-initialize particle system if needed
+    if (window.innerWidth <= 768) {
+        // Remove particles on mobile for performance
+        const canvas = document.querySelector('canvas');
+        if (canvas) {
+            canvas.style.display = 'none';
+        }
+    } else {
+        const canvas = document.querySelector('canvas');
+        if (canvas) {
+            canvas.style.display = 'block';
+        }
+    }
+}, 250));
+
+// Initialize all features when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    initLazyLoading();
+    initStaggeredAnimations();
+    initTechStackEffects();
+    initAdvancedContactForm();
+    initImageHandling();
+    initAccessibilityFeatures();
+    
+    // Add smooth reveal animation to elements with reduced delay
+    const revealElements = document.querySelectorAll('.project-card, .skill-category, .edu-exp-card');
+    revealElements.forEach((el, index) => {
+        el.style.animationDelay = `${index * 0.05}s`; // Reduced delay
+    });
 });
+
+// Add CSS animations to DOM
+const style = document.createElement('style');
+style.textContent = `
+    .no-scroll {
+        overflow: hidden;
+    }
+    
+    .fade-in {
+        animation: fadeInUp 0.8s ease forwards;
+    }
+    
+    .slide-in-left {
+        animation: slideInLeft 0.8s ease forwards;
+    }
+    
+    .slide-in-right {
+        animation: slideInRight 0.8s ease forwards;
+    }
+    
+    @keyframes sparkleFloat {
+        0% {
+            transform: translateY(0) scale(0);
+            opacity: 0.6;
+        }
+        100% {
+            transform: translateY(-20px) scale(1);
+            opacity: 0;
+        }
+    }
+    
+    @keyframes ripple {
+        to {
+            transform: scale(1.5);
+            opacity: 0;
+        }
+    }
+`;
+
+document.head.appendChild(style);
+
+// Reduced console output for better performance
+if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+    console.log('🚀 Haider Ali Portfolio - Optimized version loaded!');
+    console.log('✨ Reduced animations for better performance');
+}
+
+// Service worker registration for better performance (optional)
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+                console.log('SW registered: ', registration);
+            })
+            .catch((registrationError) => {
+                console.log('SW registration failed: ', registrationError);
+            });
+    });
+}
