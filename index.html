@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haider Ali - ML Engineer</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+            <div class="shape shape-5"></div>
+        </div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Loading Portfolio...</p>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="profile-section">
+                    <!-- Profile Image Placeholder -->
+                    <div class="profile-image-container">
+                        <div class="profile-image-placeholder">
+                            <i class="fas fa-user-circle"></i>
+                            <p>Upload Your Photo</p>
+                        </div>
+                        <div class="profile-image-overlay">
+                            <div class="pulse-ring"></div>
+                            <div class="pulse-ring pulse-ring-delay"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-info">
+                        <h1 class="glitch" data-text="Haider Ali">Haider Ali</h1>
+                        <div class="typing-container">
+                            <p class="subtitle typing-text">Machine Learning Engineer</p>
+                            <span class="cursor">|</span>
+                        </div>
+                        
+                        <div class="contact-info">
+                            <a href="mailto:haideraliathar.ai@gmail.com" class="contact-item" data-tooltip="Send Email">
+                                <i class="fas fa-envelope"></i>
+                                <span>haideraliathar.ai@gmail.com</span>
+                            </a>
+                            <a href="https://github.com/Haider-Ali-AI" class="contact-item" target="_blank" data-tooltip="View GitHub">
+                                <i class="fab fa-github"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://www.linkedin.com/in/haider-ali-b224a0367/" class="contact-item" target="_blank" data-tooltip="Connect on LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                                <span>LinkedIn</span>
+                            </a>
+                        </div>
+                        
+                        <button class="cta-button" onclick="scrollToSection('projects')">
+                            <span>Explore My Work</span>
+                            <i class="fas fa-rocket"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <div class="arrows">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <span class="brand-text">HA</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#about" class="nav-link active">About</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-text">About Me</span>
+                <div class="title-underline"></div>
+            </h2>
+            
+            <div class="about-content">
+                <div class="about-text-container">
+                    <div class="about-card">
+                        <div class="card-glow"></div>
+                        <p class="about-text">
+                            <span class="highlight">Passionate Machine Learning Engineer</span> with expertise in developing intelligent systems that solve real-world problems. 
+                            I specialize in <span class="highlight">predictive analytics</span>, <span class="highlight">recommendation systems</span>, and <span class="highlight">time series forecasting</span>. 
+                            My approach combines rigorous data science methodologies with practical software development skills to deliver scalable ML solutions.
+                        </p>
+                        
+                        <div class="stats-container">
+                            <div class="stat-item">
+                                <div class="stat-number" data-target="4">0</div>
+                                <div class="stat-label">Projects</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number" data-target="3">0</div>
+                                <div class="stat-label">Months Experience</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number" data-target="10">0</div>
+                                <div class="stat-label">Technologies</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="education-experience">
+                    <div class="edu-exp-card" data-tilt>
+                        <div class="card-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3>Education</h3>
+                        <p><strong>University of Management and Technology</strong><br>
+                        4th Semester Student<br>
+                        <span class="highlight">Computer Science & Machine Learning</span></p>
+                        <div class="card-decoration"></div>
+                    </div>
+                    
+                    <div class="edu-exp-card" data-tilt>
+                        <div class="card-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <h3>Experience</h3>
+                        <p><strong>Machine Learning Intern</strong><br>
+                        Developers Hub (3 months)<br>
+                        <span class="highlight">ML Model Development & Deployment</span></p>
+                        <div class="card-decoration"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-text">Featured Projects</span>
+                <div class="title-underline"></div>
+            </h2>
+            
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card" data-category="forecasting">
+                    <div class="project-image-container">
+                        <!-- Video Demo Placeholder -->
+                        <div class="video-placeholder">
+                            <i class="fas fa-play-circle"></i>
+                            <p>Upload Demo Video</p>
+                        </div>
+                        <div class="project-overlay">
+                            <button class="demo-btn">
+                                <i class="fas fa-play"></i>
+                                Watch Demo
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3>Store Sales Forecasting System</h3>
+                            <div class="project-status">
+                                <span class="status-badge completed">Completed</span>
+                            </div>
+                        </div>
+                        
+                        <p class="project-description">
+                            Advanced forecasting application utilizing Facebook's Prophet library for time series prediction. 
+                            Features a streamlined Streamlit interface with pre-trained models for efficient sales projections 
+                            and business intelligence insights.
+                        </p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag python">Python</span>
+                            <span class="tech-tag prophet">Prophet</span>
+                            <span class="tech-tag streamlit">Streamlit</span>
+                            <span class="tech-tag pandas">Pandas</span>
+                            <span class="tech-tag joblib">Joblib</span>
+                        </div>
+                        
+                        <div class="project-links">
+                            <a href="https://github.com/Haider-Ali-AI/Inventory-Forecasting" class="project-link github" target="_blank">
+                                <i class="fab fa-github"></i>
+                                <span>Code</span>
+                            </a>
+                            <a href="#" class="project-link demo">
+                                <i class="fas fa-external-link-alt"></i>
+                                <span>Live Demo</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card" data-category="recommendation">
+                    <div class="project-image-container">
+                        <div class="video-placeholder">
+                            <i class="fas fa-play-circle"></i>
+                            <p>Upload Demo Video</p>
+                        </div>
+                        <div class="project-overlay">
+                            <button class="demo-btn">
+                                <i class="fas fa-play"></i>
+                                Watch Demo
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3>AI-Powered Product Recommender</h3>
+                            <div class="project-status">
+                                <span class="status-badge completed">Completed</span>
+                            </div>
+                        </div>
+                        
+                        <p class="project-description">
+                            Intelligent recommendation engine employing content-based filtering with TF-IDF vectorization 
+                            and cosine similarity algorithms. Delivers personalized product suggestions through an 
+                            intuitive web interface for enhanced user shopping experience.
+                        </p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag python">Python</span>
+                            <span class="tech-tag sklearn">Scikit-learn</span>
+                            <span class="tech-tag tfidf">TF-IDF</span>
+                            <span class="tech-tag streamlit">Streamlit</span>
+                            <span class="tech-tag nlp">NLP</span>
+                        </div>
+                        
+                        <div class="project-links">
+                            <a href="https://github.com/Haider-Ali-AI/Product-Recommendation-Engine" class="project-link github" target="_blank">
+                                <i class="fab fa-github"></i>
+                                <span>Code</span>
+                            </a>
+                            <a href="#" class="project-link demo">
+                                <i class="fas fa-external-link-alt"></i>
+                                <span>Live Demo</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card" data-category="analytics">
+                    <div class="project-image-container">
+                        <div class="video-placeholder">
+                            <i class="fas fa-play-circle"></i>
+                            <p>Upload Demo Video</p>
+                        </div>
+                        <div class="project-overlay">
+                            <button class="demo-btn">
+                                <i class="fas fa-play"></i>
+                                Watch Demo
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3>Customer Churn Analytics Platform</h3>
+                            <div class="project-status">
+                                <span class="status-badge completed">Completed</span>
+                            </div>
+                        </div>
+                        
+                        <p class="project-description">
+                            Comprehensive churn prediction system leveraging Random Forest classification for telecommunications 
+                            industry. Includes automated data preprocessing, model training pipeline, and interactive 
+                            prediction interface for proactive customer retention strategies.
+                        </p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag python">Python</span>
+                            <span class="tech-tag rf">Random Forest</span>
+                            <span class="tech-tag sklearn">Scikit-learn</span>
+                            <span class="tech-tag analytics">Analytics</span>
+                            <span class="tech-tag streamlit">Streamlit</span>
+                        </div>
+                        
+                        <div class="project-links">
+                            <a href="https://github.com/Haider-Ali-AI/Customer-Churn-Analyzer" class="project-link github" target="_blank">
+                                <i class="fab fa-github"></i>
+                                <span>Code</span>
+                            </a>
+                            <a href="#" class="project-link demo">
+                                <i class="fas fa-external-link-alt"></i>
+                                <span>Live Demo</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card" data-category="trading">
+                    <div class="project-image-container">
+                        <div class="video-placeholder">
+                            <i class="fas fa-play-circle"></i>
+                            <p>Upload Demo Video</p>
+                        </div>
+                        <div class="project-overlay">
+                            <button class="demo-btn">
+                                <i class="fas fa-play"></i>
+                                Watch Demo
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3>Algorithmic Trading Framework</h3>
+                            <div class="project-status">
+                                <span class="status-badge in-progress">In Progress</span>
+                            </div>
+                        </div>
+                        
+                        <p class="project-description">
+                            Sophisticated automated trading system incorporating machine learning algorithms for market 
+                            analysis and decision making. Features real-time data processing, risk management protocols, 
+                            and backtesting capabilities for optimal trading performance.
+                        </p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag python">Python</span>
+                            <span class="tech-tag ml">Financial ML</span>
+                            <span class="tech-tag algorithms">Algorithms</span>
+                            <span class="tech-tag analytics">Analytics</span>
+                            <span class="tech-tag api">Trading APIs</span>
+                        </div>
+                        
+                        <div class="project-links">
+                            <a href="https://github.com/Haider-Ali-AI/algo_trading_system" class="project-link github" target="_blank">
+                                <i class="fab fa-github"></i>
+                                <span>Code</span>
+                            </a>
+                            <a href="#" class="project-link demo">
+                                <i class="fas fa-external-link-alt"></i>
+                                <span>Live Demo</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-text">Technical Expertise</span>
+                <div class="title-underline"></div>
+            </h2>
+            
+            <div class="skills-container">
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="100">
+                    <div class="skill-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Machine Learning</h3>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <span>Predictive Modeling</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span>Time Series Analysis</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span>Classification & Regression</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="88%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span>Recommendation Systems</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="82%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="200">
+                    <div class="skill-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Programming</h3>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <span>Python</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="95%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span>SQL</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span>JavaScript</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="75%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span>R</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="70%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="300">
+                    <div class="skill-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Frameworks & Tools</h3>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <span>Scikit-learn</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="92%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span>Prophet</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="88%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span>Streamlit</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span>Git & GitHub</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="400">
+                    <div class="skill-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Data Science</h3>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <span>Data Preprocessing</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="93%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span>Statistical Analysis</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="87%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span>Data Visualization</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span>Business Intelligence</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-text">Get In Touch</span>
+                <div class="title-underline"></div>
+            </h2>
+            
+            <div class="contact-content">
+                <div class="contact-info-card">
+                    <h3>Let's Connect!</h3>
+                    <p>Ready to collaborate on exciting ML projects? I'm always open to discussing new opportunities and innovative ideas.</p>
+                    
+                    <div class="contact-methods">
+                        <a href="mailto:haideraliathar.ai@gmail.com" class="contact-method">
+                            <div class="method-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="method-info">
+                                <h4>Email</h4>
+                                <p>haideraliathar.ai@gmail.com</p>
+                            </div>
+                        </a>
+                        
+                        <a href="https://github.com/Haider-Ali-AI" target="_blank" class="contact-method">
+                            <div class="method-icon">
+                                <i class="fab fa-github"></i>
+                            </div>
+                            <div class="method-info">
+                                <h4>GitHub</h4>
+                                <p>Check out my code</p>
+                            </div>
+                        </a>
+                        
+                        <a href="https://www.linkedin.com/in/haider-ali-b224a0367/" target="_blank" class="contact-method">
+                            <div class="method-icon">
+                                <i class="fab fa-linkedin"></i>
+                            </div>
+                            <div class="method-info">
+                                <h4>LinkedIn</h4>
+                                <p>Let's connect professionally</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-text">
+                    <p>&copy; 2024 Haider Ali. Crafted with <i class="fas fa-heart"></i> and lots of coffee.</p>
+                </div>
+                <div class="footer-social">
+                    <a href="mailto:haideraliathar.ai@gmail.com" class="social-link">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="https://github.com/Haider-Ali-AI" target="_blank" class="social-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/haider-ali-b224a0367/" target="_blank" class="social-link">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
