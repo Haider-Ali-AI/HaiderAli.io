@@ -15,8 +15,6 @@
             <div class="shape shape-1"></div>
             <div class="shape shape-2"></div>
             <div class="shape shape-3"></div>
-            <div class="shape shape-4"></div>
-            <div class="shape shape-5"></div>
         </div>
     </div>
 
@@ -33,15 +31,16 @@
         <div class="container">
             <div class="header-content">
                 <div class="profile-section">
-                    <!-- Profile Image Placeholder -->
+                    <!-- Profile Image Section -->
                     <div class="profile-image-container">
-                        <div class="images/WhatsApp Image 2025-08-10 at 9.27.25 PM.jpeg">
+                        <img src="images/mypic.jpg" alt="Haider Ali" class="profile-image" id="profileImage" onerror="this.style.display='none'; document.getElementById('profilePlaceholder').style.display='flex'">
+                        <div class="profile-image-placeholder" id="profilePlaceholder" style="display: none;">
                             <i class="fas fa-user-circle"></i>
-                            <p>Upload Your Photo</p>
+                            <p>Add Your Photo</p>
+                            <small>Path: images/mypic.jpg</small>
                         </div>
                         <div class="profile-image-overlay">
                             <div class="pulse-ring"></div>
-                            <div class="pulse-ring pulse-ring-delay"></div>
                         </div>
                     </div>
                     
@@ -82,7 +81,6 @@
                 <div class="wheel"></div>
             </div>
             <div class="arrows">
-                <span></span>
                 <span></span>
                 <span></span>
             </div>
@@ -183,13 +181,17 @@
                 <!-- Project 1 -->
                 <div class="project-card" data-category="forecasting">
                     <div class="project-image-container">
-                        <!-- Video Demo Placeholder -->
-                        <div class="video-placeholder">
+                        <video class="project-video" id="project1Video" controls style="display: none;">
+                            <source src="videos/project1-demo.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-placeholder" id="project1Placeholder">
                             <i class="fas fa-play-circle"></i>
-                            <p>Upload Demo Video</p>
+                            <p>Demo Video</p>
+                            <small>Path: videos/project1-demo.mp4</small>
                         </div>
                         <div class="project-overlay">
-                            <button class="demo-btn">
+                            <button class="demo-btn" onclick="toggleVideo('project1')">
                                 <i class="fas fa-play"></i>
                                 Watch Demo
                             </button>
@@ -234,12 +236,17 @@
                 <!-- Project 2 -->
                 <div class="project-card" data-category="recommendation">
                     <div class="project-image-container">
-                        <div class="video-placeholder">
+                        <video class="project-video" id="project2Video" controls style="display: none;">
+                            <source src="videos/project2-demo.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-placeholder" id="project2Placeholder">
                             <i class="fas fa-play-circle"></i>
-                            <p>Upload Demo Video</p>
+                            <p>Demo Video</p>
+                            <small>Path: videos/project2-demo.mp4</small>
                         </div>
                         <div class="project-overlay">
-                            <button class="demo-btn">
+                            <button class="demo-btn" onclick="toggleVideo('project2')">
                                 <i class="fas fa-play"></i>
                                 Watch Demo
                             </button>
@@ -284,12 +291,17 @@
                 <!-- Project 3 -->
                 <div class="project-card" data-category="analytics">
                     <div class="project-image-container">
-                        <div class="video-placeholder">
+                        <video class="project-video" id="project3Video" controls style="display: none;">
+                            <source src="videos/project3-demo.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-placeholder" id="project3Placeholder">
                             <i class="fas fa-play-circle"></i>
-                            <p>Upload Demo Video</p>
+                            <p>Demo Video</p>
+                            <small>Path: videos/project3-demo.mp4</small>
                         </div>
                         <div class="project-overlay">
-                            <button class="demo-btn">
+                            <button class="demo-btn" onclick="toggleVideo('project3')">
                                 <i class="fas fa-play"></i>
                                 Watch Demo
                             </button>
@@ -334,12 +346,17 @@
                 <!-- Project 4 -->
                 <div class="project-card" data-category="trading">
                     <div class="project-image-container">
-                        <div class="video-placeholder">
+                        <video class="project-video" id="project4Video" controls style="display: none;">
+                            <source src="videos/project4-demo.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-placeholder" id="project4Placeholder">
                             <i class="fas fa-play-circle"></i>
-                            <p>Upload Demo Video</p>
+                            <p>Demo Video</p>
+                            <small>Path: videos/project4-demo.mp4</small>
                         </div>
                         <div class="project-overlay">
-                            <button class="demo-btn">
+                            <button class="demo-btn" onclick="toggleVideo('project4')">
                                 <i class="fas fa-play"></i>
                                 Watch Demo
                             </button>
@@ -350,7 +367,7 @@
                         <div class="project-header">
                             <h3>Algorithmic Trading Framework</h3>
                             <div class="project-status">
-                                <span class="status-badge in-progress">In Progress</span>
+                                <span class="status-badge completed">Completed</span>
                             </div>
                         </div>
                         
